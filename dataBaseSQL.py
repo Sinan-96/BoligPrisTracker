@@ -24,16 +24,6 @@ def createDatabase(dbName):
     conn.commit()
     return conn
 
-#Insert new weather station
-def insertWeatherStation(conn, weatherStationName):
-    conn.execute(addWeatherStationSQL, (None, weatherStationName))
-    conn.commit()
 
-#Insert measurement into database
-def insertMeasurement(conn, stationID, temp, symbol, rain, datestamp):
-    conn.execute(addMeasurementSQL, (None, stationID, temp, symbol, rain, datestamp))
-    conn.commit()
-
-
-#Run to create the example DB
+#Run to create the DB
 createDatabase(databaseName)
