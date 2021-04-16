@@ -2,10 +2,10 @@ import sqlite3
 
 #VARIABLES
 databaseName = 'BoligTracker'
-prisSQL = "CREATE TABLE IF NOT EXISTS Pris (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Navn VARCHAR(50), Pris INTEGEGER ," \
-                                            "byID INTEGER NOT NULL,bydelID INTEGER NOT NULL,gateID INTEGER NOT NULL, " \
-                                            "FOREIGN KEY(byID) REFERENCES By(ID), FOREIGN KEY(bydelID) REFERENCES Bydel(ID), " \
-                                            "FOREIGN KEY(gateID) REFERENCES Gate(ID));"
+boligSQL = "CREATE TABLE IF NOT EXISTS Bolig (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Navn VARCHAR(50), Pris INTEGEGER ," \
+                                            "byID INTEGER NOT NULL,bydelID INTEGER NOT NULL,gateID INTEGER NOT NULL, Date TIMESTAMP," \
+                                            "FOREIGN KEY(By) REFERENCES By(ID), FOREIGN KEY(Bydel) REFERENCES Bydel(ID), " \
+                                            "FOREIGN KEY(Gate) REFERENCES Gate(ID));"
 bySQL = "CREATE TABLE IF NOT EXISTS By (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Navn VARCHAR(50) , GjPris INTEGER );"
 bydelSQL = "CREATE TABLE IF NOT EXISTS Bydel (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,byID INTEGER NOT NULL, " \
                                            "Navn VARCHAR(50), GjPris INTEGER, FOREIGN KEY(byID) REFERENCES By(ID) );"
@@ -20,7 +20,7 @@ def createDatabase(dbName):
     conn.execute(bySQL)
     conn.execute(bydelSQL)
     conn.execute(gateSQL)
-    conn.execute(prisSQL)
+    conn.execute(boligSQL)
     conn.commit()
     return conn
 
