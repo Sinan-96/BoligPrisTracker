@@ -1,5 +1,13 @@
 import sqlite3
 
+"""
+Functions that sends a variety
+of queries to the database. These queries are 
+adding, altering and removing data from the
+different tables of the database.
+"""
+
+
 #Conn is the database
 def addBolig(pris:int,by:int,bydel:int,gate:int,conn):
     query = "INSERT INTO Bolig VALUES (?, ?, ?, ?);"
@@ -21,6 +29,7 @@ def addGate(navn:str,bydel:int,conn):
     query = "INSERT INTO Gate VALUES (?, ?, ?);"
     data_tuple = (bydel,navn,0)
     conn.execute(query,data_tuple)
+
 
 #Meant to be called in regular time intervals, every day for example
 #Takes table name as argument
