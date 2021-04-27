@@ -2,26 +2,28 @@
 import datetime
 class webScraper:
     #TODO
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+    def __init__(self, url:str):
+        self.url = url
 
-
+    #Method for traversing the new listings page
+    #TODO
+    def traverseNew(self):
+        return
     # Gets new listings of houses from current date
     #TODO
-    def getData(self):
-        #TODO endre datoopsettet så det matcher finn sitt
-        date = datetime.datetime.now().strftime("%d %m %Y")
-        return
-
-    #Function that makes sure that the listing has the right date
-    #TODO
-    def rightDate(self)-> bool:
+    def getBoligData(self,url:str):
         return
 
     #Function that connects the webscraper to the right webpage
     #TODO
     def connectWeb(self):
+        return
+
+    #Only use at firs initialisation of program
+    #Collects all listings on Finn not just the ones from today
+    #Not sure if I will implement this
+    #TODO
+    def collectAll(self):
         return
 
 
