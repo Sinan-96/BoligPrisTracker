@@ -2,7 +2,7 @@ import sqlite3
 
 #VARIABLES
 databaseName = 'BoligTracker'
-boligSQL = "CREATE TABLE IF NOT EXISTS Bolig (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Navn VARCHAR(50), Pris INTEGEGER ," \
+boligSQL = "CREATE TABLE IF NOT EXISTS Bolig (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,Navn VARCHAR(50),Pris INTEGEGER ,KVM INT , " \
                                             "byID INTEGER NOT NULL,bydelID INTEGER NOT NULL,gateID INTEGER NOT NULL, Date TIMESTAMP," \
                                             "FOREIGN KEY(By) REFERENCES By(ID), FOREIGN KEY(Bydel) REFERENCES Bydel(ID), " \
                                             "FOREIGN KEY(Gate) REFERENCES Gate(ID));"

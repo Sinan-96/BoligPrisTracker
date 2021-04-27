@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 
 """
 Functions that sends a variety
@@ -29,6 +30,14 @@ def addGate(navn:str,bydel:int,conn):
     query = "INSERT INTO Gate VALUES (?, ?, ?);"
     data_tuple = (bydel,navn,0)
     conn.execute(query,data_tuple)
+
+#Gets GJpris for a specific date from a by,bydel or gate
+def getGJpris(dato:datetime,table:str,navn:str,conn):
+    #TODO may have to change this query to fit the tables
+    query = f"SELECT GjPris" \
+            f"FROM {table}" \
+            f"WHERE Navn = {navn} AND Dato = {dato}"
+    return conn.execute(query)
 
 
 #Meant to be called in regular time intervals, every day for example
