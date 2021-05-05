@@ -1,4 +1,5 @@
 import sqlite3
+import pandas as pd
 
 #VARIABLES
 databaseName = 'BoligTracker'
@@ -14,6 +15,9 @@ gateSQL = "CREATE TABLE IF NOT EXISTS Gate (ID INTEGER NOT NULL PRIMARY KEY AUTO
 addWeatherStationSQL = "INSERT INTO WeatherStation VALUES (?, ?);"
 addMeasurementSQL = "INSERT INTO Measurements VALUES (?, ?, ?, ?, ?, ?);"
 
+#Create panda dataframe with all areacodes in Norway
+postNummer = pd.read_csv('postnummer.csv', sep = '\t')
+postNummer.drop(['DATAKVALITET', 'DATAKVALITETSFORKLARING','SIST OPPDATERT','BRUKSOMRÅDE','FOLKETAL','BRUKSOMRÅDE'], axis=1)
 #Create database when a name is given
 def createDatabase(dbName):
     conn = sqlite3.connect(dbName + '.db', detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES)
@@ -21,6 +25,8 @@ def createDatabase(dbName):
     conn.execute(bydelSQL)
     conn.execute(gateSQL)
     conn.execute(boligSQL)
+    #Insert areacode dataframe into databse as a table
+    postNummer.to_sql(name = 'Postnummer',con = conn)
     conn.commit()
     return conn
 
